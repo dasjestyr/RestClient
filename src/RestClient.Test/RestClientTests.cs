@@ -39,7 +39,7 @@ namespace RestClient.Test
             var client = new RestClient(mockBuilder.Object) {Handler = GetHandler(HttpStatusCode.OK)};
 
             // act
-            var result = await client.Get();
+            var result = await client.GetAsync();
 
             // assert
             mockBuilder.Verify(m => m.BuildUri(), Times.Once);
@@ -52,7 +52,7 @@ namespace RestClient.Test
             var client = GetBaseClient();
 
             // act
-            var result = await client.Get();
+            var result = await client.GetAsync();
 
             // assert
             Assert.Equal("GET http://www.google.com", await result.Content.ReadAsStringAsync());
@@ -65,7 +65,7 @@ namespace RestClient.Test
             var client = GetBaseClient();
 
             // act
-            var result = await client.Delete();
+            var result = await client.DeleteAsync();
             // assert
             Assert.Equal("DELETE http://www.google.com", await result.Content.ReadAsStringAsync());
         }
@@ -77,7 +77,7 @@ namespace RestClient.Test
             var client = GetBaseClient();
 
             // act
-            var result = await client.Post();
+            var result = await client.PostAsync();
 
             // assert
             Assert.Equal("POST http://www.google.com", await result.Content.ReadAsStringAsync());
@@ -90,7 +90,7 @@ namespace RestClient.Test
             var client = GetBaseClient();
 
             // act
-            var result = await client.Put();
+            var result = await client.PutAsync();
 
             // assert
             Assert.Equal("PUT http://www.google.com", await result.Content.ReadAsStringAsync());
@@ -106,7 +106,7 @@ namespace RestClient.Test
             client.Handler = new FakeHandler(HttpStatusCode.OK, true);
 
             // act
-            var result = await client.Post(content);
+            var result = await client.PostAsync(content);
 
             // assert
             Assert.Equal(message, await result.Content.ReadAsStringAsync());
@@ -122,7 +122,7 @@ namespace RestClient.Test
             client.Handler = new FakeHandler(HttpStatusCode.OK, true);
 
             // act
-            var result = await client.Put(content);
+            var result = await client.PutAsync(content);
 
             // assert
             Assert.Equal(message, await result.Content.ReadAsStringAsync());

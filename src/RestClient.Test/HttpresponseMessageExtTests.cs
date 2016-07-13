@@ -23,7 +23,7 @@ namespace RestClient.Test
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             client.Handler = handler;
 
-            var result = await client.Post(content);
+            var result = await client.PostAsync(content);
 
             // act
             var asObj = result.Deserialize<DeserializationTestObject>(BodyFormat.Json);
@@ -45,7 +45,7 @@ namespace RestClient.Test
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             client.Handler = handler;
 
-            var result = await client.Post(content);
+            var result = await client.PostAsync(content);
 
             // act
 
@@ -74,7 +74,7 @@ namespace RestClient.Test
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             client.Handler = handler;
 
-            var result = await client.Post(content);
+            var result = await client.PostAsync(content);
 
             // act
 
