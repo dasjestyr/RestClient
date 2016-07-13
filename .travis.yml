@@ -1,2 +1,7 @@
 language: csharp
 solution: src/RestClient.sln
+install:
+  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release src/RestClient.sln
+  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./src/RestClient.Test/bin/Release/RestClient.Test.dll
