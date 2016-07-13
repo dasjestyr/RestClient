@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using RestClient.Ext;
 using Xunit;
 
@@ -13,7 +14,7 @@ namespace RestClient.Test
     public class HttpresponseMessageExtTests
     {
         [Fact]
-        public async void Deserialize_Json_NoErrors()
+        public async Task Deserialize_Json_NoErrors()
         {
             // arrange
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
@@ -35,7 +36,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Deserialize_UnsupportedFormat_Throws()
+        public async Task Deserialize_UnsupportedFormat_Throws()
         {
             // arrange
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
@@ -64,7 +65,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Deserialize_UnspecifiedFormat_Throws()
+        public async Task Deserialize_UnspecifiedFormat_Throws()
         {
             // arrange
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -31,7 +30,7 @@ namespace RestClient.Test
 
 
         [Fact]
-        public async void Get_BuilderIsCalled()
+        public async Task Get_BuilderIsCalled()
         {
             // arrange
             var mockBuilder = new Mock<IUriBuilder>();
@@ -46,7 +45,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Get_MadeRequestToCorrectUrl()
+        public async Task Get_MadeRequestToCorrectUrl()
         {
             // arrange
             var client = GetBaseClient();
@@ -59,7 +58,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Delete_MadeRequestToCorrectUrl()
+        public async Task Delete_MadeRequestToCorrectUrl()
         {
             // arrange
             var client = GetBaseClient();
@@ -71,7 +70,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Post_MadeRequestToCorrectUrl()
+        public async Task Post_MadeRequestToCorrectUrl()
         {
             // arrange
             var client = GetBaseClient();
@@ -84,7 +83,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Put_MadeREquestToCorrectUrl()
+        public async Task Put_MadeREquestToCorrectUrl()
         {
             // arrange
             var client = GetBaseClient();
@@ -97,7 +96,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Post_WithBody_BodyIsAttached()
+        public async Task Post_WithBody_BodyIsAttached()
         {
             // arrange
             var message = "Hello world";
@@ -113,7 +112,7 @@ namespace RestClient.Test
         }
 
         [Fact]
-        public async void Put_WithBody_BodyIsAttached()
+        public async Task Put_WithBody_BodyIsAttached()
         {
             // arrange
             var message = "Hello world";
