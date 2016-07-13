@@ -42,4 +42,14 @@ client
   
 HttpResponseMessage response = await client.GetAsync();
 
+// Requesting with a body (POST or PUT)
+var client = new RestClient();
+client
+  .WithScheme(Scheme.Https)
+  .WithHost("api.myservice.com/User/abcd")
+  .WithSegmentPair("user", "12345");
+  
+HttpContent content = new StringContent(myJsonstring, Encoding.UTF8, "application/json");
+HttpResponseMessage response = await client.Put(content);
+
 ```
