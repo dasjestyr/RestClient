@@ -34,7 +34,11 @@ namespace RestClient
             _builder = builder;
         }
 
-        public async Task<HttpResponseMessage> Get()
+        /// <summary>
+        /// Executes a GET request asychronously
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> GetAsync()
         {
             using (var client = GetClient())
             {
@@ -43,7 +47,11 @@ namespace RestClient
             }
         }
 
-        public async Task<HttpResponseMessage> Delete()
+        /// <summary>
+        /// Executes a DELETE request asychronously
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> DeleteAsync()
         {
             using (var client = GetClient())
             {
@@ -52,7 +60,11 @@ namespace RestClient
             }
         }
 
-        public async Task<HttpResponseMessage> Post()
+        /// <summary>
+        /// Executes a POST request asychronously
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> PostAsync()
         {
             using (var client = GetClient())
             {
@@ -60,8 +72,13 @@ namespace RestClient
                 return await client.SendAsync(request);
             }
         }
-        
-        public async Task<HttpResponseMessage> Post(HttpContent content)
+
+        /// <summary>
+        /// Executes a POST request asychronously. Will also attach a payload with the request.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> PostAsync(HttpContent content)
         {
             using (var client = GetClient())
             {
@@ -70,7 +87,11 @@ namespace RestClient
             }
         }
 
-        public async Task<HttpResponseMessage> Put()
+        /// <summary>
+        /// Executes a PUT request asychronously. Will also attach a payload with the request.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> PutAsync()
         {
             using (var client = GetClient())
             {
@@ -79,7 +100,12 @@ namespace RestClient
             }
         }
 
-        public async Task<HttpResponseMessage> Put(HttpContent content)
+        /// <summary>
+        /// Executes a PUT request asychronously. Will also attach a payload with the request.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> PutAsync(HttpContent content)
         {
             using (var client = GetClient())
             {
