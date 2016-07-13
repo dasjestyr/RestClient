@@ -75,6 +75,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DeserializationTestObject.cs" />
+    <Compile Include="HttpresponseMessageExtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryParameterCollectionTests.cs" />
     <Compile Include="ResourceBuilderTests.cs" />

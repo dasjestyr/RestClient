@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace RestClient.Test
 {
+    [ExcludeFromCodeCoverage]
     public class ResourceBuilderTests
     {
         [Fact]
