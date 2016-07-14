@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using RestClient.Infrastructure;
+using Provausio.RestClient.Infrastructure;
 using Xunit;
 
-namespace RestClient.Test
+namespace Provausio.RestClient.Test
 {
     [ExcludeFromCodeCoverage]
     public class QueryParameterCollectionTests

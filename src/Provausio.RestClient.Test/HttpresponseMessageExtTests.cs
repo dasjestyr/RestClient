@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using RestClient.Ext;
+using Provausio.RestClient.Ext;
+using RestClient;
 using Xunit;
 
-namespace RestClient.Test
+namespace Provausio.RestClient.Test
 
 {
     [ExcludeFromCodeCoverage]
@@ -20,7 +21,7 @@ namespace RestClient.Test
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
             var content = new StringContent(json);
             var handler = new FakeHandler(HttpStatusCode.OK, true);
-            var client = new RestClient();
+            var client = new Provausio.RestClient.RestClient();
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             client.Handler = handler;
 
@@ -42,7 +43,7 @@ namespace RestClient.Test
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
             var content = new StringContent(json);
             var handler = new FakeHandler(HttpStatusCode.OK, true);
-            var client = new RestClient();
+            var client = new Provausio.RestClient.RestClient();
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             client.Handler = handler;
 
@@ -71,7 +72,7 @@ namespace RestClient.Test
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
             var content = new StringContent(json);
             var handler = new FakeHandler(HttpStatusCode.OK, true);
-            var client = new RestClient();
+            var client = new Provausio.RestClient.RestClient();
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             client.Handler = handler;
 

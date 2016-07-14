@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RestClient.Infrastructure;
+using Provausio.RestClient.Infrastructure;
 
-namespace RestClient
+namespace Provausio.RestClient
 {
     internal class UriBuilder : IUriBuilder
     {

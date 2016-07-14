@@ -8,7 +8,7 @@
     <ProjectGuid>{B8E3DFD0-69EC-4547-9615-B897C1AB0295}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestClient</RootNamespace>
+    <RootNamespace>Provausio.RestClient</RootNamespace>
     <AssemblyName>Provausio.RestClient</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

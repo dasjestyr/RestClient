@@ -1,4 +1,4 @@
-﻿namespace RestClient
+﻿namespace Provausio.RestClient
 {
     public enum Scheme
     {

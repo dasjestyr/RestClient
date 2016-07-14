@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RestClient
+namespace Provausio.RestClient
 {
     public interface IUriBuilder
     {

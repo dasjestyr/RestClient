@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace RestClient.Test
+namespace Provausio.RestClient.Test
 {
     [ExcludeFromCodeCoverage]
     public class ResourceBuilderTests

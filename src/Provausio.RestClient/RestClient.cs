@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using RestClient;
+using UriBuilder = Provausio.RestClient.UriBuilder;
 
-namespace RestClient
+namespace Provausio.RestClient
 {
     public class RestClient : IUriBuilder
     {
