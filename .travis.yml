@@ -1,8 +1,8 @@
 language: csharp
-solution: src/RestClient.sln
+solution: src/Provausio.Rest.Client.sln
 install:
-  - nuget restore src/RestClient.sln
+  - nuget restore src/Provausio.Rest.Client.sln
   - nuget install xunit.runner.console -Version 2.1.0 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release src/RestClient.sln
-  - mono ./testrunner/xunit.runner.console.2.1.0/tools/xunit.console.x86.exe src/RestClient.Test/bin/Release/RestClient.Test.dll
+  - xbuild /p:Configuration=Release src/Provausio.Rest.Client.sln
+  - mono ./testrunner/xunit.runner.console.2.1.0/tools/xunit.console.x86.exe src/Provausio.Rest.Client.Test/bin/Release/Provausio.Rest.Client.Test.dll
