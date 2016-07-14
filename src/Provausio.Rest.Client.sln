@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provausio.RestClient", "Provausio.RestClient\Provausio.RestClient.csproj", "{B8E3DFD0-69EC-4547-9615-B897C1AB0295}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provausio.Rest.Client", "Provausio.Rest.Client\Provausio.Rest.Client.csproj", "{B8E3DFD0-69EC-4547-9615-B897C1AB0295}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provausio.RestClient.Test", "Provausio.RestClient.Test\Provausio.RestClient.Test.csproj", "{6E6C95A5-D3D1-45A2-8883-8A7C0D97EA69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provausio.Rest.Client.Test", "Provausio.Rest.Client.Test\Provausio.Rest.Client.Test.csproj", "{6E6C95A5-D3D1-45A2-8883-8A7C0D97EA69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

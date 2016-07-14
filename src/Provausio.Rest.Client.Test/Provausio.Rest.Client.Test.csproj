@@ -86,7 +86,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Provausio.RestClient\Provausio.RestClient.csproj">
+    <ProjectReference Include="..\Provausio.Rest.Client\Provausio.Rest.Client.csproj">
       <Project>{b8e3dfd0-69ec-4547-9615-b897c1ab0295}</Project>
       <Name>Provausio.RestClient</Name>
     </ProjectReference>
