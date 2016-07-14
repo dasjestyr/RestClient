@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Moq;
@@ -100,7 +101,7 @@ namespace RestClient.Test
         {
             // arrange
             var message = "Hello world";
-            var content = new StringContent(message);
+            var content = new StringContent(message, Encoding.UTF8, "application/json");
             var client = GetBaseClient();
             client.Handler = new FakeHandler(HttpStatusCode.OK, true);
 
