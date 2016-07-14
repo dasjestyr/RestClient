@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Moq;
 using Xunit;
 
-namespace Provausio.RestClient.Test
+namespace Provausio.Rest.Client.Test
 {
     public class RestClientTests
     {
@@ -16,7 +16,7 @@ namespace Provausio.RestClient.Test
         public void Ctor_Default_BuilderNotNull()
         {
             // arrange
-            var client = new Provausio.RestClient.RestClient();
+            var client = new RestClient();
 
             // act
             client
@@ -36,7 +36,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var mockBuilder = new Mock<IUriBuilder>();
             mockBuilder.Setup(m => m.BuildUri()).Returns(new Uri("http://www.google.com"));
-            var client = new Provausio.RestClient.RestClient(mockBuilder.Object) {Handler = GetHandler(HttpStatusCode.OK)};
+            var client = new RestClient(mockBuilder.Object) {Handler = GetHandler(HttpStatusCode.OK)};
 
             // act
             var result = await client.GetAsync();
@@ -134,7 +134,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithScheme(It.IsAny<Scheme>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithScheme(Scheme.Http);
@@ -149,7 +149,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithHost(It.IsAny<string>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithHost("www.google.com");
@@ -164,7 +164,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithPort(It.IsAny<uint>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithPort(1234);
@@ -179,7 +179,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithPath(It.IsAny<string>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithPath("/this/path");
@@ -195,7 +195,7 @@ namespace Provausio.RestClient.Test
             var parameters = new {FirstName = "Jeremy"};
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithQueryParameters(It.IsAny<object>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithQueryParameters(parameters);
@@ -211,7 +211,7 @@ namespace Provausio.RestClient.Test
             var parameters = new List<KeyValuePair<string, string>>();
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithQueryParameters(It.IsAny<IEnumerable<KeyValuePair<string, string>>>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithQueryParameters(parameters);
@@ -226,7 +226,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.WithSegmentPair(It.IsAny<string>(), It.IsAny<string>()));
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // arrange
             client.WithSegmentPair("Foo", "bar");
@@ -241,7 +241,7 @@ namespace Provausio.RestClient.Test
             // arrange
             var builder = new Mock<IUriBuilder>();
             builder.Setup(m => m.BuildUri());
-            var client = new Provausio.RestClient.RestClient(builder.Object);
+            var client = new RestClient(builder.Object);
 
             // act
             var result = client.BuildUri();
@@ -251,9 +251,9 @@ namespace Provausio.RestClient.Test
 
         }
 
-        private static Provausio.RestClient.RestClient GetBaseClient()
+        private static RestClient GetBaseClient()
         {
-            var client = new Provausio.RestClient.RestClient();
+            var client = new RestClient();
             client.Handler = GetHandler(HttpStatusCode.OK);
             client.WithScheme(Scheme.Http).WithHost("www.google.com");
             return client;

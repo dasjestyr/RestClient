@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Provausio.RestClient.Test
+namespace Provausio.Rest.Client.Test
 {
     public class DeserializationTestObject
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
-namespace Provausio.RestClient.Infrastructure
+namespace Provausio.Rest.Client.Infrastructure
 {
     /// <summary>
     /// 

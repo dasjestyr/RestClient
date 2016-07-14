@@ -2,9 +2,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using RestClient;
 
-namespace Provausio.RestClient.Ext
+namespace Provausio.Rest.Client.Ext
 {
     public static class HttpResponseMessageExt
     {

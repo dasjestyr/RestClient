@@ -1,4 +1,4 @@
-﻿namespace RestClient
+﻿namespace Provausio.Rest.Client
 {
     public enum BodyFormat
     {
