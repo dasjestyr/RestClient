@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Provausio.Rest.Client.Infrastructure;
+using Provausio.Rest.Client.Infrastructure.HttpContent;
 using Xunit;
 
 namespace Provausio.Rest.Client.Test

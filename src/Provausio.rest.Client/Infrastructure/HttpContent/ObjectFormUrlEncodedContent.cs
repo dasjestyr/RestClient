@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 
-namespace Provausio.Rest.Client.Infrastructure
+namespace Provausio.Rest.Client.Infrastructure.HttpContent
 {
     /// <summary>
     /// Serializes all public properties to an instance of FormUrlEncodedContent
