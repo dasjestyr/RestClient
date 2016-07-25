@@ -417,6 +417,22 @@ namespace Provausio.Rest.Client.Test
             Assert.NotNull(builder);
         }
 
+        [Fact]
+        public void AsClient_ReturnsAttachedClient()
+        {
+            // arrange
+            var client = new RestClient();
+
+            // act
+            var builtClient = new UriBuilder(client)
+                .WithScheme(Scheme.Ftp)
+                .WithHost("www.google.com")
+                .AsClient();
+
+            // assert
+            Assert.Equal(client, builtClient);
+        }
+
         private static UriBuilder GetBaseBuilder()
         {
             return new UriBuilder(Scheme.Http, "www.google.com");

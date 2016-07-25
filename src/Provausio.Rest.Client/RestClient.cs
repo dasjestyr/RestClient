@@ -23,6 +23,14 @@ namespace Provausio.Rest.Client
         public RestClient()
             : this(new UriBuilder())
         {
+            _builder.WithClient(this);
+        }
+
+        public RestClient(Scheme scheme, string host) 
+            : this()
+        {
+            _builder.WithClient(this);
+            _builder.WithScheme(scheme).WithHost(host);
         }
 
         /// <summary>
@@ -32,6 +40,7 @@ namespace Provausio.Rest.Client
         public RestClient(IUriBuilder builder)
         {
             _builder = builder;
+            _builder.WithClient(this);
         }
 
         /// <summary>
@@ -161,6 +170,17 @@ namespace Provausio.Rest.Client
         public Uri BuildUri()
         {
             return _builder.BuildUri();
+        }
+
+        public IUriBuilder WithClient(RestClient client)
+        {
+            _builder.WithClient(client);
+            return this;
+        }
+
+        public RestClient AsClient()
+        {
+            return _builder.AsClient();
         }
 
         #endregion

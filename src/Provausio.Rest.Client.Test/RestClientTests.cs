@@ -29,6 +29,18 @@ namespace Provausio.Rest.Client.Test
             Assert.True(true);
         }
 
+        [Fact]
+        public void Ctor_WithSchemeAndHost_Initializes()
+        {
+            // arrange
+            
+            // act
+            var client = new RestClient(Scheme.Https, "www.google.com");
+            var builder = client.BuildUri();
+
+            // assert
+            Assert.Equal("https://www.google.com/", builder.ToString());
+        }
 
         [Fact]
         public async Task Get_BuilderIsCalled()

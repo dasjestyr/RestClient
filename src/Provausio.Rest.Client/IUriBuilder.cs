@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace Provausio.Rest.Client
 {
@@ -65,6 +66,18 @@ namespace Provausio.Rest.Client
         /// </summary>
         /// <returns></returns>
         Uri BuildUri();
+
+        /// <summary>
+        /// Sets the attatched client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        IUriBuilder WithClient(RestClient client);
+
+        /// <summary>
+        /// Returns the attached client.
+        /// </summary>
+        /// <returns></returns>
+        RestClient AsClient();
 
         string ToString();
     }

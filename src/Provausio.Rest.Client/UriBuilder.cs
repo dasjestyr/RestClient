@@ -10,11 +10,13 @@ namespace Provausio.Rest.Client
     {
         private readonly List<KeyValuePair<string, string>> _segments = new List<KeyValuePair<string, string>>();
         private readonly QueryParameterCollection _queryParameters = new QueryParameterCollection();
-
+        
         private Scheme _scheme;
         private string _host;
         private uint? _port;
         private string _path;
+
+        internal RestClient Client { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UriBuilder"/> class.
@@ -26,21 +28,48 @@ namespace Provausio.Rest.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="UriBuilder"/> class.
         /// </summary>
+        /// <param name="client">The client.</param>
+        public UriBuilder(RestClient client)
+        {
+            if (client == null)
+                throw new ArgumentNullException(nameof(client));
+
+            Client = client;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UriBuilder"/> class.
+        /// </summary>
         /// <param name="scheme">The scheme.</param>
         /// <param name="host">The host.</param>
-        /// <exception cref="System.ArgumentException">
+        public UriBuilder(Scheme scheme, string host)
+            : this(new RestClient(), scheme, host)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UriBuilder" /> class.
+        /// </summary>
+        /// <param name="client">The client to which this builder will be attached.</param>
+        /// <param name="scheme">The scheme.</param>
+        /// <param name="host">The host.</param>
+        /// <exception cref="ArgumentException">
         /// Must specify scheme!
         /// or
         /// Must specify host name
         /// </exception>
-        public UriBuilder(Scheme scheme, string host)
+        /// <exception cref="System.ArgumentException">Must specify scheme!
+        /// or
+        /// Must specify host name</exception>
+        public UriBuilder(RestClient client, Scheme scheme, string host)
+            : this(client)
         {
             if (scheme == Scheme.Unspecified)
                 throw new ArgumentException("Must specify scheme!", nameof(scheme));
 
             if(string.IsNullOrEmpty(host))
                 throw new ArgumentException("Must specify host name", nameof(host));
-
+            
             _scheme = scheme;
             _host = host.Trim(' ', '/');
         }
@@ -138,7 +167,7 @@ namespace Provausio.Rest.Client
         /// <param name="name">The name.</param>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         /// </exception>
         public IUriBuilder WithSegmentPair(string name, string value)
         {
@@ -163,6 +192,21 @@ namespace Provausio.Rest.Client
         {
             var uri = GetUriString();
             return new Uri(uri);
+        }
+
+        public IUriBuilder WithClient(RestClient client)
+        {
+            Client = client;
+            return this;
+        }
+
+        /// <summary>
+        /// Returns the attached client.
+        /// </summary>
+        /// <returns></returns>
+        public RestClient AsClient()
+        {
+            return Client;
         }
 
         public override string ToString()
