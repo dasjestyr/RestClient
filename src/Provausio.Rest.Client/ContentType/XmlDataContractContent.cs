@@ -12,16 +12,31 @@ namespace Provausio.Rest.Client.ContentType
     /// <seealso cref=".ByteArrayContent" />
     public class XmlDataContractContent : ByteArrayContent
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlDataContractContent"/> class.
+        /// </summary>
+        /// <param name="objectType">Type of the object.</param>
+        /// <param name="content">The content.</param>
         public XmlDataContractContent(Type objectType, object content)
             : base(GetContentBytes(objectType, content))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlDataContractContent"/> class.
+        /// </summary>
+        /// <param name="content">The content used to initialize the <see cref="T:System.Net.Http.ByteArrayContent" />.</param>
         public XmlDataContractContent(byte[] content) 
             : base(content)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlDataContractContent"/> class.
+        /// </summary>
+        /// <param name="content">The content used to initialize the <see cref="T:System.Net.Http.ByteArrayContent" />.</param>
+        /// <param name="offset">The offset, in bytes, in the <paramref name="content" />  parameter used to initialize the <see cref="T:System.Net.Http.ByteArrayContent" />.</param>
+        /// <param name="count">The number of bytes in the <paramref name="content" /> starting from the <paramref name="offset" /> parameter used to initialize the <see cref="T:System.Net.Http.ByteArrayContent" />.</param>
         public XmlDataContractContent(byte[] content, int offset, int count) 
             : base(content, offset, count)
         {

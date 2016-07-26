@@ -12,6 +12,9 @@ namespace Provausio.Rest.Client.Infrastructure
     /// <seealso cref="System.Collections.Generic.Dictionary{String, String}" />
     internal class QueryParameterCollection : Dictionary<string, string>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryParameterCollection"/> class.
+        /// </summary>
         public QueryParameterCollection()
         {
         }

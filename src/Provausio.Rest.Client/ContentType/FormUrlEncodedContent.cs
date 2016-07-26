@@ -9,16 +9,24 @@ namespace Provausio.Rest.Client.ContentType
     /// </summary>
     public class FormUrlEncodedContent : System.Net.Http.FormUrlEncodedContent
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormUrlEncodedContent"/> class.
+        /// </summary>
+        /// <param name="parametersObject">The parameters object.</param>
         public FormUrlEncodedContent(object parametersObject)
             : this(GetKeyValuePairs(parametersObject))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormUrlEncodedContent"/> class.
+        /// </summary>
+        /// <param name="nameValueCollection">The name value collection.</param>
         public FormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection)
             : base(nameValueCollection)
         {
         }
-
+        
         private static IDictionary<string, string> GetKeyValuePairs(object parameterObject)
         {
             var publicProperties = parameterObject

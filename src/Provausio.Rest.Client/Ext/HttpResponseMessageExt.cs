@@ -8,6 +8,13 @@ namespace Provausio.Rest.Client.Ext
 {
     public static class HttpResponseMessageExt
     {
+        /// <summary>
+        /// Deserializes the specified format.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="response">The response.</param>
+        /// <param name="format">The format.</param>
+        /// <returns></returns>
         public static T Deserialize<T>(this HttpResponseMessage response, BodyFormat format)
             where T : class, new()
         {
