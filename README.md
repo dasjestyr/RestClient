@@ -2,7 +2,7 @@
 
 
 # RestClient
-A rest client with a fluid uri builder. Probably the most tedious thing about making HTTP calls is constructing the client. There are many optional steps to be taken, some by setting properties others by calling methods, etc. This seemed like a perfect opportunity for a builder. The builder pattern allows you to build something in optional steps. This libary simply provides a builder implementation on the client itself.
+A rest client with a fluid uri builder. Probably the most tedious thing about making HTTP calls is constructing the client. There are many optional steps to be taken, some by setting properties others by calling methods, etc. This seemed like a perfect opportunity for a builder. The builder pattern allows you to build something in optional steps as well as pass the client around your app to be built in steps in different places. This libary simply provides a builder implementation on the client itself.
 
 ## A simple get request
 
