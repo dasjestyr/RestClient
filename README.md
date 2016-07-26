@@ -62,7 +62,7 @@ var client = new RestClient()
   .WithSegmentPair("users", "12345")
   .AsClient();
   
-HttpContent content = new ObjectFormUrlEncodedContent(new { FirstName = "Jon", LastName = "Snow" });
+HttpContent content = new Provausio.Rest.Client.ContentType.FormUrlEncodedContent(new { FirstName = "Jon", LastName = "Snow" });
 HttpResponseMessage response = await client.Put(content);
 
 ```
