@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Provausio.Rest.Client.Infrastructure;
 
 namespace Provausio.Rest.Client.Ext
 {

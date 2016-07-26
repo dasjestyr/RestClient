@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Provausio.Rest.Client.Infrastructure;
 using Xunit;
 
 namespace Provausio.Rest.Client.Test
@@ -14,7 +15,7 @@ namespace Provausio.Rest.Client.Test
             // arrange
 
             // act
-            var builder = new UriBuilder();
+            var builder = new ResourceBuilder();
 
             // assert
             Assert.NotNull(builder);
@@ -26,7 +27,7 @@ namespace Provausio.Rest.Client.Test
             // arrange
 
             // act
-            var builder = new UriBuilder(Scheme.Https, "www.google.com");
+            var builder = new ResourceBuilder(Scheme.Https, "www.google.com");
 
             // assert
             Assert.NotNull(builder);
@@ -40,7 +41,7 @@ namespace Provausio.Rest.Client.Test
             // act
 
             // assert
-            Assert.Throws<ArgumentException>(() => new UriBuilder(Scheme.Unspecified, "www.google.com"));
+            Assert.Throws<ArgumentException>(() => new ResourceBuilder(Scheme.Unspecified, "www.google.com"));
         }
 
         [Fact]
@@ -51,7 +52,7 @@ namespace Provausio.Rest.Client.Test
             // act
 
             // assert
-            Assert.Throws<ArgumentException>(() => new UriBuilder(Scheme.Http, null));
+            Assert.Throws<ArgumentException>(() => new ResourceBuilder(Scheme.Http, null));
         }
 
         [Fact]
@@ -62,14 +63,14 @@ namespace Provausio.Rest.Client.Test
             // act
 
             // assert
-            Assert.Throws<ArgumentException>(() => new UriBuilder(Scheme.Http, string.Empty));
+            Assert.Throws<ArgumentException>(() => new ResourceBuilder(Scheme.Http, string.Empty));
         }
 
         [Fact]
         public void ToString_NoScheme_Throws()
         {
             // arrange
-            var builder = new UriBuilder();
+            var builder = new ResourceBuilder();
             builder.WithHost("www.google.com");
 
             // act
@@ -82,7 +83,7 @@ namespace Provausio.Rest.Client.Test
         public void ToString_NullHost_Throws()
         {
             // arrange
-            var builder = new UriBuilder();
+            var builder = new ResourceBuilder();
             builder.WithScheme(Scheme.Http);
 
             // act
@@ -95,7 +96,7 @@ namespace Provausio.Rest.Client.Test
         public void ToString_EmptyHost_Throws()
         {
             // arrange
-            var builder = new UriBuilder();
+            var builder = new ResourceBuilder();
             builder.WithScheme(Scheme.Http);
 
             // act
@@ -152,7 +153,7 @@ namespace Provausio.Rest.Client.Test
         public void ToString_FullUsage_ExpectedOutput()
         {
             // arrange
-            var builder = new UriBuilder()
+            var builder = new ResourceBuilder()
                 .WithScheme(Scheme.Http)
                 .WithHost("www.google.com")
                 .WithPort(1234)
@@ -171,7 +172,7 @@ namespace Provausio.Rest.Client.Test
         public void BuildUri_ValidUri_ExpectedOutput()
         {
             // arrange
-            var builder = new UriBuilder()
+            var builder = new ResourceBuilder()
                 .WithScheme(Scheme.Http)
                 .WithHost("www.google.com")
                 .WithPort(1234)
@@ -190,7 +191,7 @@ namespace Provausio.Rest.Client.Test
         public void ToString_WithSchemeAndHost_ExpectedOutput()
         {
             // arrange
-            var builder = new UriBuilder(Scheme.Http, "www.google.com");
+            var builder = new ResourceBuilder(Scheme.Http, "www.google.com");
 
             // act
             var result = builder.ToString();
@@ -424,7 +425,7 @@ namespace Provausio.Rest.Client.Test
             var client = new RestClient();
 
             // act
-            var builtClient = new UriBuilder(client)
+            var builtClient = new ResourceBuilder(client)
                 .WithScheme(Scheme.Ftp)
                 .WithHost("www.google.com")
                 .AsClient();
@@ -433,9 +434,9 @@ namespace Provausio.Rest.Client.Test
             Assert.Equal(client, builtClient);
         }
 
-        private static UriBuilder GetBaseBuilder()
+        private static ResourceBuilder GetBaseBuilder()
         {
-            return new UriBuilder(Scheme.Http, "www.google.com");
+            return new ResourceBuilder(Scheme.Http, "www.google.com");
         }
     }
 }

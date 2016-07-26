@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 
-namespace Provausio.Rest.Client.ContentTypes
+namespace Provausio.Rest.Client.ContentType
 {
     /// <summary>
-    /// Serializes all public properties to an instance of FormUrlEncodedContent
+    /// Extends <see cref="System.Net.Http.FormUrlEncodedContent"/>. Provides a ctor that will serializes all public properties to a form post string.
     /// </summary>
-    public class ObjectFormUrlEncodedContent : FormUrlEncodedContent
+    public class FormUrlEncodedContent : System.Net.Http.FormUrlEncodedContent
     {
-        public ObjectFormUrlEncodedContent(object parametersObject)
+        public FormUrlEncodedContent(object parametersObject)
             : this(GetKeyValuePairs(parametersObject))
         {
         }
 
-        public ObjectFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection)
+        public FormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection)
             : base(nameValueCollection)
         {
         }

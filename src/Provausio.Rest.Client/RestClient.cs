@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Provausio.Rest.Client.Infrastructure;
 
 namespace Provausio.Rest.Client
 {
-    public class RestClient : IUriBuilder
+    public class RestClient : IResourceBuilder
     {
-        private readonly IUriBuilder _builder;
+        private readonly IResourceBuilder _builder;
 
         /// <summary>
         /// Gets or sets the handler.
@@ -21,7 +22,7 @@ namespace Provausio.Rest.Client
         /// Initializes a new instance of the <see cref="RestClient"/> class.
         /// </summary>
         public RestClient()
-            : this(new UriBuilder())
+            : this(new ResourceBuilder())
         {
             _builder.WithClient(this);
         }
@@ -37,7 +38,7 @@ namespace Provausio.Rest.Client
         /// Initializes a new instance of the <see cref="RestClient"/> class.
         /// </summary>
         /// <param name="builder">The builder.</param>
-        public RestClient(IUriBuilder builder)
+        public RestClient(IResourceBuilder builder)
         {
             _builder = builder;
             _builder.WithClient(this);
@@ -130,39 +131,39 @@ namespace Provausio.Rest.Client
                 : new HttpClient(Handler);
         }
 
-        #region -- IUriBuilder Implementation --
+        #region -- IResourceBuilder Implementation --
 
-        public IUriBuilder WithScheme(Scheme scheme)
+        public IResourceBuilder WithScheme(Scheme scheme)
         {
             return _builder.WithScheme(scheme);
         }
 
-        public IUriBuilder WithHost(string host)
+        public IResourceBuilder WithHost(string host)
         {
             return _builder.WithHost(host);
         }
 
-        public IUriBuilder WithPort(uint port)
+        public IResourceBuilder WithPort(uint port)
         {
             return _builder.WithPort(port);
         }
 
-        public IUriBuilder WithPath(string path)
+        public IResourceBuilder WithPath(string path)
         {
             return _builder.WithPath(path);
         }
 
-        public IUriBuilder WithQueryParameters(object parameters)
+        public IResourceBuilder WithQueryParameters(object parameters)
         {
             return _builder.WithQueryParameters(parameters);
         }
 
-        public IUriBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
+        public IResourceBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
         {
             return _builder.WithQueryParameters(parameters);
         }
 
-        public IUriBuilder WithSegmentPair(string name, string value)
+        public IResourceBuilder WithSegmentPair(string name, string value)
         {
             return _builder.WithSegmentPair(name, value);
         }
@@ -172,7 +173,7 @@ namespace Provausio.Rest.Client
             return _builder.BuildUri();
         }
 
-        public IUriBuilder WithClient(RestClient client)
+        public IResourceBuilder WithClient(RestClient client)
         {
             _builder.WithClient(client);
             return this;

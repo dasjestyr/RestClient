@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
+using Provausio.Rest.Client.Infrastructure;
 
 namespace Provausio.Rest.Client
 {
-    public interface IUriBuilder
+    public interface IResourceBuilder
     {
         /// <summary>
         /// Sets the scheme.
         /// </summary>
         /// <param name="scheme">The scheme.</param>
         /// <returns></returns>
-        IUriBuilder WithScheme(Scheme scheme);
+        IResourceBuilder WithScheme(Scheme scheme);
 
         /// <summary>
         /// Sets the host authority.
         /// </summary>
         /// <param name="host">The host.</param>
         /// <returns></returns>
-        IUriBuilder WithHost(string host);
+        IResourceBuilder WithHost(string host);
 
         /// <summary>
         /// Sets the port.
@@ -26,14 +26,14 @@ namespace Provausio.Rest.Client
         /// <param name="port">The port.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException">Invalid port range</exception>
-        IUriBuilder WithPort(uint port);
+        IResourceBuilder WithPort(uint port);
 
         /// <summary>
         /// Adds the resource/path to the host authority.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns></returns>
-        IUriBuilder WithPath(string path);
+        IResourceBuilder WithPath(string path);
 
         /// <summary>
         /// Adds object properties to the resource as a query string
@@ -41,7 +41,7 @@ namespace Provausio.Rest.Client
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">Object is null, nothing to add</exception>
-        IUriBuilder WithQueryParameters(object parameters);
+        IResourceBuilder WithQueryParameters(object parameters);
 
         /// <summary>
         /// Adds the key value pairs to the resource as a query string
@@ -49,7 +49,7 @@ namespace Provausio.Rest.Client
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException"></exception>
-        IUriBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters);
+        IResourceBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters);
 
         /// <summary>
         /// Adds a key value pair to the resource as a key/value segement
@@ -59,7 +59,7 @@ namespace Provausio.Rest.Client
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">
         /// </exception>
-        IUriBuilder WithSegmentPair(string name, string value);
+        IResourceBuilder WithSegmentPair(string name, string value);
 
         /// <summary>
         /// Builds the URI.
@@ -71,7 +71,7 @@ namespace Provausio.Rest.Client
         /// Sets the attatched client.
         /// </summary>
         /// <param name="client">The client.</param>
-        IUriBuilder WithClient(RestClient client);
+        IResourceBuilder WithClient(RestClient client);
 
         /// <summary>
         /// Returns the attached client.

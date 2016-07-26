@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Provausio.Rest.Client.ContentTypes;
+using Provausio.Rest.Client.ContentType;
 using Xunit;
 
 namespace Provausio.Rest.Client.Test

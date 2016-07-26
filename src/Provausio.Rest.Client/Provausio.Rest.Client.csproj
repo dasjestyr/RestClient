@@ -34,16 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BodyFormat.cs" />
+    <Compile Include="Infrastructure\BodyFormat.cs" />
     <Compile Include="Ext\HttpResponseMessageExt.cs" />
-    <Compile Include="ContentTypes\ObjectFormUrlEncodedContent.cs" />
-    <Compile Include="ContentTypes\XmlDataContractContent.cs" />
+    <Compile Include="ContentType\FormUrlEncodedContent.cs" />
+    <Compile Include="ContentType\XmlDataContractContent.cs" />
     <Compile Include="Infrastructure\QueryParameterCollection.cs" />
-    <Compile Include="IUriBuilder.cs" />
+    <Compile Include="IResourceBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UriBuilder.cs" />
+    <Compile Include="ResourceBuilder.cs" />
     <Compile Include="RestClient.cs" />
-    <Compile Include="Scheme.cs" />
+    <Compile Include="Infrastructure\Scheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

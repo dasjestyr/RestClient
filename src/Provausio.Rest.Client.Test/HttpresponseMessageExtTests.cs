@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Provausio.Rest.Client.Ext;
+using Provausio.Rest.Client.Infrastructure;
 using Xunit;
 
 namespace Provausio.Rest.Client.Test

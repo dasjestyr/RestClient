@@ -6,7 +6,7 @@ using Provausio.Rest.Client.Infrastructure;
 
 namespace Provausio.Rest.Client
 {
-    internal class UriBuilder : IUriBuilder
+    internal class ResourceBuilder : IResourceBuilder
     {
         private readonly List<KeyValuePair<string, string>> _segments = new List<KeyValuePair<string, string>>();
         private readonly QueryParameterCollection _queryParameters = new QueryParameterCollection();
@@ -19,17 +19,17 @@ namespace Provausio.Rest.Client
         internal RestClient Client { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UriBuilder"/> class.
+        /// Initializes a new instance of the <see cref="ResourceBuilder"/> class.
         /// </summary>
-        public UriBuilder()
+        public ResourceBuilder()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UriBuilder"/> class.
+        /// Initializes a new instance of the <see cref="ResourceBuilder"/> class.
         /// </summary>
         /// <param name="client">The client.</param>
-        public UriBuilder(RestClient client)
+        public ResourceBuilder(RestClient client)
         {
             if (client == null)
                 throw new ArgumentNullException(nameof(client));
@@ -38,17 +38,17 @@ namespace Provausio.Rest.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UriBuilder"/> class.
+        /// Initializes a new instance of the <see cref="ResourceBuilder"/> class.
         /// </summary>
         /// <param name="scheme">The scheme.</param>
         /// <param name="host">The host.</param>
-        public UriBuilder(Scheme scheme, string host)
+        public ResourceBuilder(Scheme scheme, string host)
             : this(new RestClient(), scheme, host)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UriBuilder" /> class.
+        /// Initializes a new instance of the <see cref="ResourceBuilder" /> class.
         /// </summary>
         /// <param name="client">The client to which this builder will be attached.</param>
         /// <param name="scheme">The scheme.</param>
@@ -61,7 +61,7 @@ namespace Provausio.Rest.Client
         /// <exception cref="System.ArgumentException">Must specify scheme!
         /// or
         /// Must specify host name</exception>
-        public UriBuilder(RestClient client, Scheme scheme, string host)
+        public ResourceBuilder(RestClient client, Scheme scheme, string host)
             : this(client)
         {
             if (scheme == Scheme.Unspecified)
@@ -79,7 +79,7 @@ namespace Provausio.Rest.Client
         /// </summary>
         /// <param name="scheme">The scheme.</param>
         /// <returns></returns>
-        public IUriBuilder WithScheme(Scheme scheme)
+        public IResourceBuilder WithScheme(Scheme scheme)
         {
             _scheme = scheme;
             return this;
@@ -90,7 +90,7 @@ namespace Provausio.Rest.Client
         /// </summary>
         /// <param name="host">The host.</param>
         /// <returns></returns>
-        public IUriBuilder WithHost(string host)
+        public IResourceBuilder WithHost(string host)
         {
             if (string.IsNullOrEmpty(host))
                 return this;
@@ -105,7 +105,7 @@ namespace Provausio.Rest.Client
         /// <param name="port">The port.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException">Invalid port range</exception>
-        public IUriBuilder WithPort(uint port)
+        public IResourceBuilder WithPort(uint port)
         {
             if(port < 1 || port > 65535)
                 throw new ArgumentException("Invalid port range", nameof(port));
@@ -120,7 +120,7 @@ namespace Provausio.Rest.Client
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns></returns>
-        public IUriBuilder WithPath(string path)
+        public IResourceBuilder WithPath(string path)
         {
             _path = path.Trim(' ', '/');
             return this;
@@ -132,7 +132,7 @@ namespace Provausio.Rest.Client
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">Object is null, nothing to add</exception>
-        public IUriBuilder WithQueryParameters(object parameters)
+        public IResourceBuilder WithQueryParameters(object parameters)
         {
             if(parameters == null)
                 throw new ArgumentNullException(nameof(parameters), "Object is null, nothing to add");
@@ -147,7 +147,7 @@ namespace Provausio.Rest.Client
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException"></exception>
-        public IUriBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
+        public IResourceBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
         {
             var asList = parameters.ToList();
             if(parameters == null || !asList.Any())
@@ -169,7 +169,7 @@ namespace Provausio.Rest.Client
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
         /// </exception>
-        public IUriBuilder WithSegmentPair(string name, string value)
+        public IResourceBuilder WithSegmentPair(string name, string value)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
@@ -194,7 +194,7 @@ namespace Provausio.Rest.Client
             return new Uri(uri);
         }
 
-        public IUriBuilder WithClient(RestClient client)
+        public IResourceBuilder WithClient(RestClient client)
         {
             Client = client;
             return this;

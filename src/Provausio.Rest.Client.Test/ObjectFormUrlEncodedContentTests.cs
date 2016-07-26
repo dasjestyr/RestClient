@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Provausio.Rest.Client.ContentTypes;
-using Provausio.Rest.Client.Infrastructure;
 using Xunit;
+using FormUrlEncodedContent = Provausio.Rest.Client.ContentType.FormUrlEncodedContent;
 
 namespace Provausio.Rest.Client.Test
 {
@@ -22,7 +20,7 @@ namespace Provausio.Rest.Client.Test
             // arrange
 
             // act
-            var content = new ObjectFormUrlEncodedContent(_testObject);
+            var content = new FormUrlEncodedContent(_testObject);
 
             // assert
             Assert.NotNull(content);
@@ -36,7 +34,7 @@ namespace Provausio.Rest.Client.Test
             var formContent = new FormUrlEncodedContent(values);
             
             // act
-            var content = new ObjectFormUrlEncodedContent(_testObject);
+            var content = new FormUrlEncodedContent(_testObject);
             var formString = await formContent.ReadAsStringAsync();
             var objectFormString = await content.ReadAsStringAsync();
 
