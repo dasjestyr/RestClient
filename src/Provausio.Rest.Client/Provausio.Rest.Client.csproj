@@ -36,8 +36,8 @@
   <ItemGroup>
     <Compile Include="BodyFormat.cs" />
     <Compile Include="Ext\HttpResponseMessageExt.cs" />
-    <Compile Include="Infrastructure\HttpContent\ObjectFormUrlEncodedContent.cs" />
-    <Compile Include="Infrastructure\HttpContent\XmlDataContractContent.cs" />
+    <Compile Include="ContentTypes\ObjectFormUrlEncodedContent.cs" />
+    <Compile Include="ContentTypes\XmlDataContractContent.cs" />
     <Compile Include="Infrastructure\QueryParameterCollection.cs" />
     <Compile Include="IUriBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

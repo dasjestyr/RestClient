@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Provausio.Rest.Client.Infrastructure.HttpContent
+namespace Provausio.Rest.Client.ContentTypes
 {
     /// <summary>
     /// Serializes a properly <see cref="DataContractAttribute"/>-decorated object to xml and adds it to the content stream.
