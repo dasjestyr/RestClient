@@ -1,4 +1,5 @@
-![Build Status](https://travis-ci.org/dasjestyr/RestClient.svg?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/26352mubvo3iwobm?svg=true)](https://ci.appveyor.com/project/JeremyStafford/restclient)
+
 
 # RestClient
 A rest client with a fluid uri builder
