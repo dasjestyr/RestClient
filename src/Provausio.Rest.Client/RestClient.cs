@@ -158,6 +158,11 @@ namespace Provausio.Rest.Client
             return _builder.WithQueryParameters(parameters);
         }
 
+        public IResourceBuilder WithQueryParameter(string key, string value)
+        {
+            return _builder.WithQueryParameter(key, value);
+        }
+
         public IResourceBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
         {
             return _builder.WithQueryParameters(parameters);

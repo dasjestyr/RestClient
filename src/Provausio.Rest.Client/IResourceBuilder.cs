@@ -36,12 +36,23 @@ namespace Provausio.Rest.Client
         IResourceBuilder WithPath(string path);
 
         /// <summary>
-        /// Adds object properties to the resource as a query string
+        /// Adds object properties to the resource as a query string to the current parameter list
         /// </summary>
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">Object is null, nothing to add</exception>
+        /// <exception cref="System.ArgumentException">An item with the same key has already been added.</exception>
         IResourceBuilder WithQueryParameters(object parameters);
+
+        /// <summary>
+        /// Adds key-value pair to current parameter list
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">Object is null, nothing to add</exception>
+        /// <exception cref="System.ArgumentException">An item with the same key has already been added.</exception>
+        IResourceBuilder WithQueryParameter(string key, string value);
 
         /// <summary>
         /// Adds the key value pairs to the resource as a query string

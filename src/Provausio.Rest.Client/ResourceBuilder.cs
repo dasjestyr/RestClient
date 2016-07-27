@@ -141,6 +141,18 @@ namespace Provausio.Rest.Client
             return this;
         }
 
+        public IResourceBuilder WithQueryParameter(string key, string value)
+        {
+            if(string.IsNullOrEmpty(key))
+                throw new ArgumentNullException(nameof(key));
+
+            if(string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+
+            _queryParameters.Add(key, value);
+            return this;
+        }
+
         /// <summary>
         /// Adds the key value pairs to the resource as a query string
         /// </summary>
