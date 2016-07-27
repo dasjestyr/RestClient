@@ -270,9 +270,6 @@ namespace Provausio.Rest.Client
 
         private static void AddTrailingSlash(StringBuilder builder)
         {
-            if (builder.ToString().EndsWith("/"))
-                return;
-
             builder.Append("/");
         }
     }

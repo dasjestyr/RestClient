@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -226,11 +227,27 @@ namespace Provausio.Rest.Client.Test
             builder.Setup(m => m.WithQueryParameters(It.IsAny<IEnumerable<KeyValuePair<string, string>>>()));
             var client = new RestClient(builder.Object);
 
-            // arrange
+            // act
             client.WithQueryParameters(parameters);
-
+            
             // assert
             builder.Verify(m => m.WithQueryParameters(It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.Once);
+        }
+
+        [Fact]
+        public void WithQueryParameter_WithKeyAndValue_BuilderIsCalled()
+        {
+            // arrange
+            var builder = new Mock<IResourceBuilder>();
+            builder.Setup(m => m.WithQueryParameter(It.IsAny<string>(), It.IsAny<string>()));
+
+            var client = new RestClient(builder.Object);
+
+            // act
+            client.WithQueryParameter("hello", "world");
+
+            // assert
+            builder.Verify(m => m.WithQueryParameter(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -262,6 +279,48 @@ namespace Provausio.Rest.Client.Test
             // assert
             builder.Verify(m => m.BuildUri(), Times.Once);
 
+        }
+
+        [Fact]
+        public void WithClient_CallsBuilder()
+        {
+            // arrange
+            var builder = new Mock<IResourceBuilder>();
+            builder.Setup(m => m.WithClient(It.IsAny<RestClient>()));
+            var client = new RestClient(builder.Object);
+
+            // act
+            client.WithClient(client);
+
+            // assert
+            // the test is weird because im using the builder ctor which sets "this" on the builder
+            // since we're testing a pass-through, it actually gets called twice. This isn't a real
+            // use case, it's just for testing.
+            builder.Verify(m => m.WithClient(It.IsAny<RestClient>()), Times.Exactly(2));
+        }
+
+        [Fact]
+        public void AsClient_ReturnsAttachedClient()
+        {
+            // arrange
+            var client = new RestClient();
+            var builder = new Mock<IResourceBuilder>();
+            builder.Setup(m => m.WithClient(It.IsAny<RestClient>())).Returns(client);
+
+            // act
+            
+            // assert
+            Assert.Equal(client, client.AsClient());
+        }
+
+        [Fact]
+        public void AsClient_CallsBuilder()
+        {
+            // arrange
+
+            // act
+
+            // assert
         }
 
         private static RestClient GetBaseClient()

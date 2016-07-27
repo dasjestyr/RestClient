@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Provausio.Rest.Client.Infrastructure;
 using Xunit;
 
@@ -22,7 +23,7 @@ namespace Provausio.Rest.Client.Test
         }
 
         [Fact]
-        public void Ctor_WithParameters_Initializes()
+        public void Ctor_WithSchemeAndHost_Initializes()
         {
             // arrange
 
@@ -64,6 +65,17 @@ namespace Provausio.Rest.Client.Test
 
             // assert
             Assert.Throws<ArgumentException>(() => new ResourceBuilder(Scheme.Http, string.Empty));
+        }
+
+        [Fact]
+        public void Ctor_NullRestClient_Throws()
+        {
+            // arrange
+
+            // act
+
+            // assert
+            Assert.Throws<ArgumentNullException>(() => new ResourceBuilder(null));
         }
 
         [Fact]
@@ -240,6 +252,22 @@ namespace Provausio.Rest.Client.Test
         }
 
         [Fact]
+        public void WithPath_HasTrailingSlash_DoesNotAddDoubleSlash()
+        {
+            // arrange
+            var builder = GetBaseBuilder();
+
+            // act
+            builder
+                .WithScheme(Scheme.Https)
+                .WithHost("www.host.com")
+                .WithPath("test/thing/");
+
+            // assert
+            Assert.False(builder.ToString().Contains("thing//"));
+        }
+
+        [Fact]
         public void WithPath_MultiSegmentLeadingSlash_IsExpected()
         {
             // arrange
@@ -355,6 +383,73 @@ namespace Provausio.Rest.Client.Test
 
             // assert
             Assert.NotNull(builder);
+        }
+
+        [Fact]
+        public void WithParameter_NewValue_DoesNotThrow()
+        {
+            // arrnage
+            var builder = GetBaseBuilder();
+
+            // act
+            builder.WithQueryParameter("key", "value");
+
+            // assert
+            Assert.NotNull(builder);
+        }
+
+        [Fact]
+        public void WithParameter_NullKey_Throws()
+        {
+            // arrange
+            var builder = GetBaseBuilder();
+
+            // act
+            
+            // assert
+            Assert.Throws<ArgumentNullException>(() => builder.WithQueryParameter(null, "value"));
+        }
+
+        [Fact]
+        public void WithParameter_NullValue_Throws()
+        {
+            // arrange
+            var builder = GetBaseBuilder();
+
+            // act
+
+            // assert
+            Assert.Throws<ArgumentNullException>(() => builder.WithQueryParameter("key", null));
+        }
+
+        [Fact]
+        public void WithParameter_MultipleParameters_AreAdded()
+        {
+            // arrange
+            var builder = GetBaseBuilder();
+
+            // act
+            builder
+                .WithScheme(Scheme.Https)
+                .WithHost("www.host.com")
+                .WithQueryParameter("key1", "value")
+                .WithQueryParameter("key2", "value");
+
+            // assert
+            Assert.Equal("https://www.host.com?key1=value&key2=value", builder.ToString());
+        }
+
+        [Fact]
+        public void WithParameter_DuplicateValue_Throws()
+        {
+            // arrange
+            var builder = GetBaseBuilder();
+
+            // act
+            builder.WithQueryParameter("key", "value");
+
+            // assert
+            Assert.Throws<ArgumentException>(() => builder.WithQueryParameter("key", "value"));
         }
 
         [Fact]
