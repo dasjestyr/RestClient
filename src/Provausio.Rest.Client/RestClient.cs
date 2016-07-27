@@ -53,7 +53,7 @@ namespace Provausio.Rest.Client
             using (var client = GetClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, _builder.BuildUri());
-                return await client.SendAsync(request);
+                return await client.SendAsync(request).ConfigureAwait(false);
             }
         }
 
@@ -66,7 +66,7 @@ namespace Provausio.Rest.Client
             using (var client = GetClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Delete, _builder.BuildUri());
-                return await client.SendAsync(request);
+                return await client.SendAsync(request).ConfigureAwait(false);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Provausio.Rest.Client
             using (var client = GetClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Post, _builder.BuildUri());
-                return await client.SendAsync(request);
+                return await client.SendAsync(request).ConfigureAwait(false);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Provausio.Rest.Client
             using (var client = GetClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Post, _builder.BuildUri()) {Content = content};
-                return await client.SendAsync(request);
+                return await client.SendAsync(request).ConfigureAwait(false);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Provausio.Rest.Client
             using (var client = GetClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Put, _builder.BuildUri());
-                return await client.SendAsync(request);
+                return await client.SendAsync(request).ConfigureAwait(false);
             }
         }
 
@@ -120,7 +120,7 @@ namespace Provausio.Rest.Client
             using (var client = GetClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Put, _builder.BuildUri()) {Content = content};
-                return await client.SendAsync(request);
+                return await client.SendAsync(request).ConfigureAwait(false);
             }
         }
 
