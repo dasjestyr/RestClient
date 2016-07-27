@@ -34,7 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\BodyFormat.cs" />
     <Compile Include="Ext\HttpResponseMessageExt.cs" />
     <Compile Include="ContentType\FormUrlEncodedContent.cs" />
     <Compile Include="ContentType\XmlDataContractContent.cs" />

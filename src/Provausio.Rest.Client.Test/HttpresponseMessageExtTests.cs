@@ -15,20 +15,16 @@ namespace Provausio.Rest.Client.Test
     public class HttpresponseMessageExtTests
     {
         [Fact]
-        public async Task Deserialize_Json_NoErrors()
+        public async Task FromJson_NoErrors()
         {
             // arrange
             var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
             var content = new StringContent(json);
-            var handler = new FakeHandler(HttpStatusCode.OK, true);
-            var client = new RestClient();
-            client.WithScheme(Scheme.Http).WithHost("www.google.com");
-            client.Handler = handler;
-
-            var result = await client.PostAsync(content);
-
+            var testResponse = new HttpResponseMessage(HttpStatusCode.OK);
+            testResponse.Content = content;
+            
             // act
-            var asObj = result.Deserialize<DeserializationTestObject>(BodyFormat.Json);
+            var asObj = await testResponse.FromJson<DeserializationTestObject>();
 
             // assert
             Assert.Equal("Jon", asObj.FirstName);
@@ -37,62 +33,19 @@ namespace Provausio.Rest.Client.Test
         }
 
         [Fact]
-        public async Task Deserialize_UnsupportedFormat_Throws()
+        public void BodyAsString_ReturnsString()
         {
             // arrange
-            var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
-            var content = new StringContent(json);
-            var handler = new FakeHandler(HttpStatusCode.OK, true);
-            var client = new RestClient();
-            client.WithScheme(Scheme.Http).WithHost("www.google.com");
-            client.Handler = handler;
-
-            var result = await client.PostAsync(content);
+            const string testString = "hello world";
+            var content = new StringContent(testString);
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.Content = content;
 
             // act
+            var returned = response.BodyAsString();
 
             // assert
-            try
-            {
-                result.Deserialize<DeserializationTestObject>(BodyFormat.Binary);
-            }
-            catch (AggregateException ex)
-            {
-                Assert.True(ex.InnerExceptions.Any(e => e is NotImplementedException));
-                return;
-            }
-
-            Assert.False(true);
-        }
-
-        [Fact]
-        public async Task Deserialize_UnspecifiedFormat_Throws()
-        {
-            // arrange
-            var json = "{\"FirstName\" : \"Jon\", \"Age\" : 16, \"BirthDate\" : \"2/1/1201 12:00:00 AM\"}";
-            var content = new StringContent(json);
-            var handler = new FakeHandler(HttpStatusCode.OK, true);
-            var client = new RestClient();
-            client.WithScheme(Scheme.Http).WithHost("www.google.com");
-            client.Handler = handler;
-
-            var result = await client.PostAsync(content);
-
-            // act
-
-            // assert
-
-            try
-            {
-                result.Deserialize<DeserializationTestObject>(BodyFormat.Unspecified);
-            }
-            catch (AggregateException ex)
-            {
-                Assert.True(ex.InnerExceptions.Any(e => e is ArgumentOutOfRangeException));
-                return;
-            }
-
-            Assert.False(true);
+            Assert.Equal(testString, returned);
         }
     }
 }

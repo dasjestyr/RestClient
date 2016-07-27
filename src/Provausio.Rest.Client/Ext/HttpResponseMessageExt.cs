@@ -8,43 +8,15 @@ namespace Provausio.Rest.Client.Ext
 {
     public static class HttpResponseMessageExt
     {
-        /// <summary>
-        /// Deserializes the specified format.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="response">The response.</param>
-        /// <param name="format">The format.</param>
-        /// <returns></returns>
-        public static T Deserialize<T>(this HttpResponseMessage response, BodyFormat format)
-            where T : class, new()
+        public static string BodyAsString(this HttpResponseMessage response)
         {
-            return GetFromBody<T>(response, format).Result;
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        private static async Task<T> GetFromBody<T>(HttpResponseMessage response, BodyFormat format)
-            where T : class, new()
+        public static async Task<T> FromJson<T>(this HttpResponseMessage response)
         {
-            T result = null;
-            switch (format)
-            {
-                case BodyFormat.Json:
-                    result = await FromJson<T>(response);
-                    break;
-                case BodyFormat.Xml:
-                case BodyFormat.String:
-                case BodyFormat.Binary:
-                    throw new NotImplementedException();
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(format), "Must specify body format for serializer to work.");
-            }
-
-            return result;
-        }
-
-        private static async Task<T> FromJson<T>(HttpResponseMessage response)
-        {
-            var json = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(json);
+            var asString = await response.Content.ReadAsStringAsync();
+            return await Task.Run(() => JsonConvert.DeserializeObject<T>(asString));
         }
     }
 }
